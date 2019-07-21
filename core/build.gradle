@@ -1,0 +1,12 @@
+import app.weather.buildsrc.Libs
+
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation Libs.Kotlin.stdlib
+
+    implementation Libs.Coroutines.core
+    implementation Libs.Coroutines.rx2
+
+    implementation Libs.Dagger.dagger
+}
