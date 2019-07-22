@@ -38,5 +38,5 @@ data class Current (
 	@SerializedName("vis_miles") val vis_miles : Int,
 	@SerializedName("uv") val uv : Int,
 	@SerializedName("gust_mph") val gust_mph : Double,
-	@SerializedName("gust_kph") val gust_kph : Int
+	@SerializedName("gust_kph") val gust_kph : Double
 )

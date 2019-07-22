@@ -1,6 +1,6 @@
 package com.android.xu.xuapi
 
-import com.android.xu.xuapi.entities.WeatherForecast
+import com.android.xu.xuapi.entities.XuWeatherForecast
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -9,6 +9,6 @@ import retrofit2.http.Query
 interface WeatherService {
 
     @GET(" /v1/forecast.json")
-    fun forecast(@Query("key") key: String, @Query("q") location : String): Call<WeatherForecast>
+    fun forecast(@Query("q") location : String): Call<XuWeatherForecast>
 
 }

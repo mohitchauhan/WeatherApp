@@ -1,13 +1,22 @@
 package com.android.xu.xuapi
 
+import com.android.xu.xuapi.interceptors.XuAPIInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
-open class APIXu(private val apiKey: String) {
+open class APIXu(val apiKey: String) {
 
+
+    companion object{
+        const val HOST = "api.apixu.com"
+        const val API_VERSION = "v1"
+        const val API_URL = "https://$HOST/$API_VERSION/";
+        const val PARAM_API_KEY = "key";
+
+    }
 
     private var okHttpClient: OkHttpClient? = null
     private var retrofit: Retrofit? = null
@@ -20,7 +29,7 @@ open class APIXu(private val apiKey: String) {
      */
     protected fun retrofitBuilder(): Retrofit.Builder {
         return Retrofit.Builder()
-            .baseUrl(apiKey)
+            .baseUrl(API_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient())
     }
@@ -47,6 +56,8 @@ open class APIXu(private val apiKey: String) {
      * Adds a network interceptor to add version and auth headers and a regular interceptor to log requests.
      */
     protected open fun setOkHttpClientDefaults(builder: OkHttpClient.Builder) {
+        builder.addInterceptor(XuAPIInterceptor(this))
+
     }
 
     /**

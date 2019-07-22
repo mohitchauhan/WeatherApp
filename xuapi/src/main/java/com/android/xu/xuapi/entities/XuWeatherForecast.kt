@@ -15,7 +15,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class WeatherForecast (
+data class XuWeatherForecast (
 	@SerializedName("location") val location : Location,
 	@SerializedName("current") val current : Current,
 	@SerializedName("forecast") val forecast : Forecast

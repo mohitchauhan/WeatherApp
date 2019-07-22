@@ -33,19 +33,4 @@ class APIxuModule {
     }
 
 
-    @Provides
-    internal fun getApiInterface(retroFit: Retrofit): WeatherService {
-        return retroFit.create(WeatherService::class.java)
-    }
-
-    @Provides
-    internal fun getRetrofit(okHttpClient: OkHttpClient): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(" http://api.apixu.com/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
-            .build()
-    }
-
-
 }

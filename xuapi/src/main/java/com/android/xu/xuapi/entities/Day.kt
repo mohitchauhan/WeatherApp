@@ -20,7 +20,7 @@ data class Day (
 	@SerializedName("maxtemp_f") val maxtemp_f : Double,
 	@SerializedName("mintemp_c") val mintemp_c : Double,
 	@SerializedName("mintemp_f") val mintemp_f : Double,
-	@SerializedName("avgtemp_c") val avgtemp_c : Int,
+	@SerializedName("avgtemp_c") val avgtemp_c : Double,
 	@SerializedName("avgtemp_f") val avgtemp_f : Double,
 	@SerializedName("maxwind_mph") val maxwind_mph : Double,
 	@SerializedName("maxwind_kph") val maxwind_kph : Double,
