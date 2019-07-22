@@ -1,4 +1,7 @@
 package com.android.xu.data
 
-class DataModule {
-}
+import com.android.xu.data.repositories.forecast.WeatherForecastModule
+import dagger.Module
+
+@Module(includes = [WeatherForecastModule::class])
+abstract class DataModule
