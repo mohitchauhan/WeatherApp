@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':buildSrc', ':data', ':core', ':interactors', ':location-api', 'xuapi'
 rootProject.name='Weather-App'

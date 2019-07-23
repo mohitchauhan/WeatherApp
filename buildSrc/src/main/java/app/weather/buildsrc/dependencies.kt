@@ -39,9 +39,17 @@ object Libs {
             const val fragmentKtx = "androidx.fragment:fragment-ktx:$version"
         }
 
+        object Lifecycle {
+            private const val version = "2.1.0-beta01"
+            const val extensions = "androidx.lifecycle:lifecycle-extensions:$version"
+            const val compiler = "androidx.lifecycle:lifecycle-compiler:$version"
+            const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+        }
+
         const val constraintlayout = "androidx.constraintlayout:constraintlayout:1.1.3"
 
         const val coreKtx = "androidx.core:core-ktx:1.0.1"
+        const val multidex = "com.android.support:multidex:1.0.3"
 
     }
 
@@ -71,6 +79,12 @@ object Libs {
         private const val version = "4.0.0"
         const val okhttp = "com.squareup.okhttp3:okhttp:$version"
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
+    }
+
+    object PlayServices{
+        private const val version = "16.0.0"
+        const val location = "com.google.android.gms:play-services-location:$version"
+
     }
 
 
