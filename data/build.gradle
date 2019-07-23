@@ -8,6 +8,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(":core")
     api project(":xuapi")
+    api project(":location-api")
 
     implementation Libs.Dagger.androidSupport
     kapt Libs.Dagger.compiler
