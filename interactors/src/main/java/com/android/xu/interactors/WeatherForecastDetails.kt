@@ -11,9 +11,9 @@ class WeatherForecastDetails @Inject constructor(private val weatherForecastRepo
     override val dispatcher: CoroutineDispatcher = dispatchers.io
 
     override suspend fun doWork(params: Params): Result<WeatherForecast> {
-        return weatherForecastRepository.getForecast(params.location, params.days);
+        return weatherForecastRepository.getForecast(params.days);
     }
     
-    data class Params(val location: String, val days : Int)
+    data class Params(val days : Int)
 
 }
