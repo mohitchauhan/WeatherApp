@@ -24,11 +24,11 @@ data class Day (
 	@SerializedName("avgtemp_f") val avgtemp_f : Double,
 	@SerializedName("maxwind_mph") val maxwind_mph : Double,
 	@SerializedName("maxwind_kph") val maxwind_kph : Double,
-	@SerializedName("totalprecip_mm") val totalprecip_mm : Int,
-	@SerializedName("totalprecip_in") val totalprecip_in : Int,
-	@SerializedName("avgvis_km") val avgvis_km : Int,
-	@SerializedName("avgvis_miles") val avgvis_miles : Int,
-	@SerializedName("avghumidity") val avghumidity : Int,
+	@SerializedName("totalprecip_mm") val totalprecip_mm : Double,
+	@SerializedName("totalprecip_in") val totalprecip_in : Double,
+	@SerializedName("avgvis_km") val avgvis_km : Double,
+	@SerializedName("avgvis_miles") val avgvis_miles : Double,
+	@SerializedName("avghumidity") val avghumidity : Double,
 	@SerializedName("condition") val condition : Condition,
 	@SerializedName("uv") val uv : Double
 )
