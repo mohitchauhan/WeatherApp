@@ -26,5 +26,16 @@
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
+    <style name="errorStyle">
+        <item name="android:textSize">54sp</item>
+        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="RetryCTA">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@color/colorActionAccent</item>
+    </style>
+
 
 </resources>

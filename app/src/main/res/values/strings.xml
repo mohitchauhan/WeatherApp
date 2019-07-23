@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Weather-App</string>
     <string name="error_location_permission_not_granted">Location permission required!</string>
+    <string name="btn_retry">retry</string>
+    <string name="error_something_went_wrong">Something went wrong at our end</string>
 </resources>

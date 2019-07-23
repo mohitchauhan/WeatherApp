@@ -39,6 +39,7 @@ class HomeViewModel @Inject constructor(private val weatherForecastInteractor : 
     }
 
     fun fetchWeatherForecast(){
+        liveData.postValue(Resource(ResourceState.LOADING, null, "Loading data"))
         viewModelScope.launchInteractor(weatherForecastInteractor, WeatherForecastDetails.Params( DAYS))
     }
 

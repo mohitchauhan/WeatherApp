@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.core.app.ActivityCompat
@@ -20,6 +21,7 @@ import com.android.xu.data.entities.WeatherForecast
 import com.android.xu.weather.BaseActivity
 import com.android.xu.weather.R
 import com.android.xu.weather.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.e_content_view.view.*
 
 
 class HomeActivity : BaseActivity() {
@@ -28,16 +30,17 @@ class HomeActivity : BaseActivity() {
      private lateinit var forecastAdapter : ForecastAdapter
 
     private val LOCATION_REQUEST_CODE = 12
+    private lateinit var contentViewBinding : ActivityMainBinding;
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val contentViewBinding =
+        contentViewBinding =
             DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
         forecastAdapter = ForecastAdapter(arrayListOf<Forecastday>())
-        contentViewBinding.recyclerView.apply {
+        contentViewBinding.includeContent.recyclerView.apply {
             val itemDecor = DividerItemDecoration(this@HomeActivity, DividerItemDecoration.HORIZONTAL)
             itemDecor.setDrawable(ContextCompat.getDrawable(this@HomeActivity, R.drawable.list_divider)!!)
             addItemDecoration(itemDecor)
@@ -50,29 +53,35 @@ class HomeActivity : BaseActivity() {
             .get(HomeViewModel::class.java)
         viewModel.liveData.observe(this, Observer<Resource<WeatherForecast>> {
             it?.let {
-                when(it.resourceState){
-                    ResourceState.ERROR -> {
-
-                    }
-                    ResourceState.SUCCESS -> {
-                        it.data?.days?.let { it1 -> forecastAdapter.update(it1) };
-                        contentViewBinding.cityName.text = it.data?.cityName
-                        contentViewBinding.currentTemperature.text = it.data?.currentTemp_c.toString()
-
-                    }
-                    else -> {
-                        // do nothing
-                    }
-                }
-
-                contentViewBinding.state = it.resourceState
-
+                handleResult(it)
             }
         });
 
         requestPermission()
     }
 
+    private fun handleResult(it: Resource<WeatherForecast>) {
+        contentViewBinding.loadingView.visibility = View.GONE
+        contentViewBinding.errorView.visibility = View.GONE
+        contentViewBinding.includeContent.visibility = View.GONE
+
+        when (it.resourceState) {
+            ResourceState.ERROR -> {
+                contentViewBinding.errorView.visibility = View.VISIBLE
+            }
+            ResourceState.SUCCESS -> {
+                it.data?.days?.let { it1 -> forecastAdapter.update(it1) };
+                contentViewBinding.includeContent.cityName.text = it.data?.cityName
+                contentViewBinding.includeContent.currentTemperature.text =
+                    it.data?.currentTemp_c.toString()
+                contentViewBinding.includeContent.visibility = View.VISIBLE
+            }
+            else -> {
+                contentViewBinding.loadingView.visibility = View.VISIBLE
+                // do nothing
+            }
+        }
+    }
 
 
     private fun requestPermission() {
