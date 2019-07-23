@@ -3,10 +3,13 @@ import app.weather.buildsrc.Libs
 apply plugin: 'kotlin'
 
 dependencies {
-    implementation Libs.Kotlin.stdlib
+    api Libs.Kotlin.stdlib
 
-    implementation Libs.Coroutines.core
-    implementation Libs.Coroutines.rx2
+    api Libs.Coroutines.core
+    api Libs.Coroutines.rx2
 
-    implementation Libs.Dagger.dagger
+    api Libs.Dagger.dagger
+
+    implementation Libs.Retrofit.retrofit
+
 }
