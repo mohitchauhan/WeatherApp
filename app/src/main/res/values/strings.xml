@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Weather-App</string>
+    <string name="error_location_permission_not_granted">Location permission required!</string>
 </resources>

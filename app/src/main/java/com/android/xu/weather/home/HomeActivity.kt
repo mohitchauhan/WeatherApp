@@ -1,6 +1,12 @@
 package com.android.xu.weather.home
 
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.widget.Toast
+import androidx.annotation.NonNull
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -20,6 +26,8 @@ class HomeActivity : BaseActivity() {
 
      private lateinit var viewModel: HomeViewModel
      private lateinit var forecastAdapter : ForecastAdapter
+
+    private val LOCATION_REQUEST_CODE = 12
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +70,50 @@ class HomeActivity : BaseActivity() {
             }
         });
 
+        requestPermission()
+    }
+
+
+
+    private fun requestPermission() {
+        if (hasLocationPermission(this)) {
+            val permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
+            ActivityCompat.requestPermissions(this, permissions, LOCATION_REQUEST_CODE)
+        } else {
+            onPermissionSuccess()
+        }
+    }
+
+    private fun hasLocationPermission(context: Context): Boolean {
+        return ActivityCompat.checkSelfPermission(
+            context,
+            android.Manifest.permission.ACCESS_FINE_LOCATION
+        ) != PackageManager.PERMISSION_GRANTED
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        @NonNull permissions: Array<String>, @NonNull grantResults: IntArray
+    ) {
+        if (requestCode == LOCATION_REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                onPermissionSuccess()
+            } else {
+                showPermissionError()
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        }
+    }
+
+    private fun showPermissionError() {
+        Toast.makeText(this.baseContext, getString(R.string.error_location_permission_not_granted), Toast.LENGTH_LONG).show()
+        finish()
+    }
+
+    private fun onPermissionSuccess() {
         viewModel.fetchWeatherForecast()
     }
+
+
 }
