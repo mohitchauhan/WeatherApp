@@ -1,9 +1,9 @@
-package com.android.xu.weather.inject
+package com.android.app.weather.inject
 
 import android.app.Application
-import com.android.xu.weather.AppInitializer
-import com.android.xu.weather.WeatherApp
-import com.android.xu.weather.appinitializers.RxAndroidInitializer
+import com.android.app.weather.AppInitializer
+import com.android.app.weather.WeatherApp
+import com.android.app.weather.appinitializers.RxAndroidInitializer
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoSet

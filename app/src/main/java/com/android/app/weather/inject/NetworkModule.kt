@@ -1,10 +1,9 @@
 
-package com.android.xu.weather.inject
+package com.android.app.weather.inject
 
 import com.android.xu.weather.BuildConfig
 import dagger.Module
 import dagger.Provides
-import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import javax.inject.Singleton
 

@@ -1,9 +1,9 @@
 
-package com.android.xu.weather.appinitializers
+package com.android.app.weather.appinitializers
 
 import android.app.Application
 import android.os.Looper
-import com.android.xu.weather.AppInitializer
+import com.android.app.weather.AppInitializer
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject

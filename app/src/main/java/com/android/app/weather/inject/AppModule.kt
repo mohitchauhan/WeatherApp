@@ -1,10 +1,10 @@
-package com.android.xu.weather.inject
+package com.android.app.weather.inject
 
 import android.content.Context
 import com.android.xu.core.utils.AppCoroutineDispatchers
 import com.android.xu.core.utils.AppRxSchedulers
 import com.android.xu.weather.BuildConfig
-import com.android.xu.weather.WeatherApp
+import com.android.app.weather.WeatherApp
 import dagger.Module
 import dagger.Provides
 import io.reactivex.android.schedulers.AndroidSchedulers

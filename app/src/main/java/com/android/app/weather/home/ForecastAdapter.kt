@@ -1,7 +1,6 @@
-package com.android.xu.weather.home
+package com.android.app.weather.home
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.xu.data.entities.Forecastday

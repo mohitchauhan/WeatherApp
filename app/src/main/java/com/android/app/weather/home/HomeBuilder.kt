@@ -1,8 +1,8 @@
-package com.android.xu.weather.home
+package com.android.app.weather.home
 
 import androidx.lifecycle.ViewModel
-import com.android.xu.weather.inject.ViewModelBuilder
-import com.android.xu.weather.inject.ViewModelKey
+import com.android.app.weather.inject.ViewModelBuilder
+import com.android.app.weather.inject.ViewModelKey
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

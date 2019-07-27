@@ -14,15 +14,13 @@
  * limitations under the License.
  */
 
-package com.android.xu.weather.inject
+package com.android.app.weather.inject
 
-import androidx.lifecycle.ViewModelProvider
-import com.android.xu.weather.inject.WappViewModelFactory
-import dagger.Binds
-import dagger.Module
+import androidx.lifecycle.ViewModel
+import dagger.MapKey
+import kotlin.reflect.KClass
 
-@Module
-internal abstract class ViewModelBuilder {
-    @Binds
-    internal abstract fun bindViewModelFactory(factory: WappViewModelFactory): ViewModelProvider.Factory
-}
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY_GETTER, AnnotationTarget.PROPERTY_SETTER)
+@Retention(AnnotationRetention.RUNTIME)
+@MapKey
+annotation class ViewModelKey(val value: KClass<out ViewModel>)

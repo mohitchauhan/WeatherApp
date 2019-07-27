@@ -1,8 +1,10 @@
-package com.android.xu.weather.home
+package com.android.app.weather.home
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.android.xu.core.data.entities.ErrorResult
 import com.android.xu.core.data.entities.Result
 import com.android.xu.core.state.Resource
 import com.android.xu.core.state.ResourceState
@@ -29,7 +31,11 @@ class HomeViewModel @Inject constructor(private val weatherForecastInteractor : 
             override fun onComplete() {
             }
             override fun onNext(t: Result<WeatherForecast>) {
-                liveData.postValue(Resource(ResourceState.SUCCESS, t.get(), "success"))
+                if (t is ErrorResult){
+                    liveData.postValue(Resource(ResourceState.ERROR, null, t.exception?.message))
+                }else{
+                    liveData.postValue(Resource(ResourceState.SUCCESS, t.get(), "success"))
+                }
             }
 
             override fun onError(e: Throwable) {
@@ -38,10 +44,13 @@ class HomeViewModel @Inject constructor(private val weatherForecastInteractor : 
         }))
     }
 
-    fun fetchWeatherForecast(){
+    fun fetchWeatherForecast(days : Int = DAYS){
+        Log.d("fetchWeatherForecast", " " + days + weatherForecastInteractor.dispatcher + weatherForecastInteractor)
         liveData.postValue(Resource(ResourceState.LOADING, null, "Loading data"))
-        viewModelScope.launchInteractor(weatherForecastInteractor, WeatherForecastDetails.Params( DAYS))
+        viewModelScope.launchInteractor(weatherForecastInteractor, getParams(days))
     }
+
+    fun getParams(days: Int) = WeatherForecastDetails.Params(days)
 
 
     override fun onCleared() {

@@ -1,4 +1,4 @@
-package com.android.xu.weather.location
+package com.android.app.weather.location
 
 import android.Manifest
 import androidx.annotation.NonNull

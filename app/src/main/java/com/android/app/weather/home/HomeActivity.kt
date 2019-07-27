@@ -1,4 +1,4 @@
-package com.android.xu.weather.home
+package com.android.app.weather.home
 
 import android.Manifest
 import android.content.Context
@@ -18,7 +18,7 @@ import com.android.xu.core.state.Resource
 import com.android.xu.core.state.ResourceState
 import com.android.xu.data.entities.Forecastday
 import com.android.xu.data.entities.WeatherForecast
-import com.android.xu.weather.BaseActivity
+import com.android.app.weather.BaseActivity
 import com.android.xu.weather.R
 import com.android.xu.weather.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.e_content_view.view.*

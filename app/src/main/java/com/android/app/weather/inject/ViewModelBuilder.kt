@@ -14,10 +14,14 @@
  * limitations under the License.
  */
 
-package com.android.xu.weather
+package com.android.app.weather.inject
 
-import android.app.Application
+import androidx.lifecycle.ViewModelProvider
+import dagger.Binds
+import dagger.Module
 
-interface AppInitializer {
-    fun init(application: Application)
+@Module
+internal abstract class ViewModelBuilder {
+    @Binds
+    internal abstract fun bindViewModelFactory(factory: WappViewModelFactory): ViewModelProvider.Factory
 }

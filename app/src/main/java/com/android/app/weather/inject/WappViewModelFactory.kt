@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.xu.weather.inject
+package com.android.app.weather.inject
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -1,8 +1,8 @@
-package com.android.xu.weather.inject
+package com.android.app.weather.inject
 
 import com.android.xu.data.DataModule
-import com.android.xu.weather.WeatherApp
-import com.android.xu.weather.home.HomeBuilder
+import com.android.app.weather.WeatherApp
+import com.android.app.weather.home.HomeBuilder
 import com.android.xu.xuapi.APIxuModule
 import dagger.BindsInstance
 import dagger.Component

@@ -14,13 +14,10 @@
  * limitations under the License.
  */
 
-package com.android.xu.weather.inject
+package com.android.app.weather
 
-import androidx.lifecycle.ViewModel
-import dagger.MapKey
-import kotlin.reflect.KClass
+import android.app.Application
 
-@Target(AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY_GETTER, AnnotationTarget.PROPERTY_SETTER)
-@Retention(AnnotationRetention.RUNTIME)
-@MapKey
-annotation class ViewModelKey(val value: KClass<out ViewModel>)
+interface AppInitializer {
+    fun init(application: Application)
+}
