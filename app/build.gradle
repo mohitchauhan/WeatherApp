@@ -19,7 +19,7 @@ android {
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.android.app.weather.WeatherAppTestRunner"
 
         buildConfigField "String", "XU_API_KEY", "\"" + propOrDef("API_XU_KEY", "") + "\""
 
@@ -34,7 +34,18 @@ android {
     dataBinding {
         enabled = true
     }
+
+    packagingOptions {
+        pickFirst 'mockito-extensions/org.mockito.plugins.MockMaker'
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
+
+
+
 
 dependencies {
 
@@ -73,15 +84,48 @@ dependencies {
     kapt Libs.Dagger.compiler
     kapt Libs.Dagger.androidProcessor
 
+    kaptAndroidTest Libs.Dagger.androidProcessor
+
+
     implementation Libs.OkHttp.loggingInterceptor
     implementation Libs.OkHttp.okhttp
 
     implementation Libs.PlayServices.location
 
+    implementation Libs.Retrofit.gsonConverter
+
+    // Test dependencies
+
+    androidTestImplementation('com.jakewharton.espresso:okhttp3-idling-resource:1.0.0') {
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    }
+
+
+
+    //mockito
+    androidTestImplementation 'org.mockito:mockito-android:2.27.0'
+    androidTestImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+
+
+    testImplementation "androidx.arch.core:core-testing:2.0.0-rc01"
+
+    //mockwebserver
+    androidTestImplementation('com.squareup.okhttp3:mockwebserver:4.0.0') {
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    }
 
 
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation('androidx.test.espresso:espresso-contrib:3.1.0')
+    androidTestImplementation 'androidx.test:core:1.0.0'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
+    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.2.1'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.2.1'
+
+
+
 }
