@@ -87,5 +87,46 @@ object Libs {
 
     }
 
+    //--------------------- Test Dependencies ----------------------------------------
+
+
+    // Test dependencies
+
+    object Espresso{
+        private const val version = "3.1.0"
+        private const val espressoContrib = "androidx.test.espresso:espresso-contrib:$version"
+        private const val espressoCore = "androidx.test.espresso:espresso-core:$version"
+    }
+
+    object Mockito{
+        private const val mockitoAndroid = "org.mockito:mockito-android:2.27.0"
+        private const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+
+    }
+
+    object MockServer{
+        const val okhttp3Idlin = "com.jakewharton.espresso:okhttp3-idling-resource:1.0.0"
+        //mockwebserver
+        const val mockWebServer = "com.squareup.okhttp3:mockwebserver:4.0.0"
+    }
+
+    object coroutineTest{
+        private const val version = "1.2.1"
+        const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
+    }
+
+    object androidXTest{
+        private const val archCoreTesing =  "androidx.arch.core:core-testing:2.0.0-rc01"
+        private const val version = "1.1.0"
+        private const val  core = "androidx.test:core:$version"
+        private const val  runner = "androidx.test:runner:$version"
+        private const val  rules = "androidx.test:rules:$version"
+    }
+
+    object jUnit{
+        private const val junit = "junit:junit:4.12"
+
+    }
+
 
 }
