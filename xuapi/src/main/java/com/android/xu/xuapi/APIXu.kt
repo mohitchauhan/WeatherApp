@@ -1,8 +1,11 @@
 package com.android.xu.xuapi
 
+import com.android.xu.xuapi.entities.XuWeatherForecast
 import com.android.xu.xuapi.interceptors.XuAPIInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
@@ -27,7 +30,7 @@ open class APIXu(val apiKey: String) {
      *
      * @see .okHttpClient
      */
-    protected fun retrofitBuilder(): Retrofit.Builder {
+    protected open fun retrofitBuilder(): Retrofit.Builder {
         return Retrofit.Builder()
             .baseUrl(API_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -76,5 +79,10 @@ open class APIXu(val apiKey: String) {
     fun weatherService(): WeatherService {
         return getRetrofit().create(WeatherService::class.java)
     }
+
+    fun forecast(location: String, days: Int): Response<XuWeatherForecast> {
+        return weatherService().forecast(location, days).execute()
+    }
+
 
 }
