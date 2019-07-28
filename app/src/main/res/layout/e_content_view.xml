@@ -43,6 +43,7 @@
         app:layout_constraintVertical_bias="0.0"
         android:background="@android:color/white"
         android:layout_marginTop="62dp"
+        android:layoutAnimation="@anim/layout_animation_from_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cityName" />
 

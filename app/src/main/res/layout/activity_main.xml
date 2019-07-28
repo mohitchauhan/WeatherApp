@@ -10,7 +10,7 @@
 
         <include
             android:id="@+id/includeContent"
-            layout="@layout/e_content_view" />
+            layout="@layout/e_content_view" android:visibility="gone"/>
 
 
         <include
@@ -19,7 +19,7 @@
 
         <include
             android:id="@+id/errorView"
-            layout="@layout/e_loading_error" />
+            layout="@layout/e_loading_error"  android:visibility="gone"/>
 
     </FrameLayout>
 

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.core.app.ActivityCompat
@@ -14,14 +15,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.app.weather.BaseActivity
 import com.android.xu.core.state.Resource
 import com.android.xu.core.state.ResourceState
 import com.android.xu.data.entities.Forecastday
 import com.android.xu.data.entities.WeatherForecast
-import com.android.app.weather.BaseActivity
 import com.android.xu.weather.R
 import com.android.xu.weather.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.e_content_loading.view.*
 import kotlinx.android.synthetic.main.e_content_view.view.*
+import kotlinx.android.synthetic.main.e_loading_error.view.*
 
 
 class HomeActivity : BaseActivity() {
@@ -56,7 +59,7 @@ class HomeActivity : BaseActivity() {
                 handleResult(it)
             }
         });
-
+        contentViewBinding.errorView.retry_button.setOnClickListener { viewModel.fetchWeatherForecast()  }
         requestPermission()
     }
 
@@ -67,9 +70,11 @@ class HomeActivity : BaseActivity() {
 
         when (it.resourceState) {
             ResourceState.ERROR -> {
+                contentViewBinding.loadingView.loading_icon.animation?.cancel()
                 contentViewBinding.errorView.visibility = View.VISIBLE
             }
             ResourceState.SUCCESS -> {
+                contentViewBinding.loadingView.loading_icon.animation?.cancel()
                 it.data?.days?.let { it1 -> forecastAdapter.update(it1) };
                 contentViewBinding.includeContent.cityName.text = it.data?.cityName
                 contentViewBinding.includeContent.currentTemperature.text =
@@ -78,9 +83,15 @@ class HomeActivity : BaseActivity() {
             }
             else -> {
                 contentViewBinding.loadingView.visibility = View.VISIBLE
+                animateRotate()
                 // do nothing
             }
         }
+    }
+
+    private fun animateRotate(){
+        val aniRotate = AnimationUtils.loadAnimation(applicationContext, R.anim.rotate)
+        contentViewBinding.loadingView.loading_icon.startAnimation(aniRotate)
     }
 
 

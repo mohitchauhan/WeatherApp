@@ -1,5 +1,6 @@
 package com.android.xu.interactors
 
+import com.android.xu.core.data.entities.ErrorResult
 import com.android.xu.core.data.entities.Result
 import com.android.xu.core.utils.AppCoroutineDispatchers
 import com.android.xu.data.entities.WeatherForecast
@@ -11,7 +12,12 @@ class WeatherForecastDetails @Inject constructor(private val weatherForecastRepo
     override val dispatcher: CoroutineDispatcher = dispatchers.io
 
     override suspend fun doWork(params: Params): Result<WeatherForecast> {
-        return weatherForecastRepository.getForecast(params.days);
+        try {
+            return weatherForecastRepository.getForecast(params.days);
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return ErrorResult(e, "Error occurred")
+        }
     }
     
     data class Params(val days : Int)
