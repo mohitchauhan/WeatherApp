@@ -1,8 +1,11 @@
 package com.android.app.weather.home
 
 import androidx.test.espresso.Espresso
+import androidx.test.espresso.ViewFinder
 import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.rule.ActivityTestRule
 import androidx.test.rule.GrantPermissionRule
 import androidx.test.runner.AndroidJUnit4
@@ -40,6 +43,7 @@ class HomeTest {
     @Before
     @Throws(Exception::class)
     fun setup() {
+        stubLocationProvider()
         webServer = MockWebServer()
         webServer.start(8080)
     }
@@ -52,14 +56,13 @@ class HomeTest {
 
     @Test
     fun activityLaunches() {
-        stubLocationProvider()
+        webServer.dispatcher = MockServerDispatcher.RequestDispatcher(TestData.mock4DayResponse)
         activity.launchActivity(null)
     }
 
 
     @Test
     fun displayWeatherContent(){
-        stubLocationProvider()
 
         val weather  = TestData.makeWeatherForecast(WeatherTestApplication.appComponent().xuWeatherMapper(), TestData.makeXuForecastWeatherResponse(Random.nextInt(1, 4)))
 
@@ -85,7 +88,6 @@ class HomeTest {
 
     @Test
     fun onErrorShowsRetry() {
-        stubLocationProvider()
         webServer.dispatcher = MockServerDispatcher.ErrorDispatcher()
         activity.launchActivity(null)
         Espresso.onView(ViewMatchers.withId(R.id.retry_button))
