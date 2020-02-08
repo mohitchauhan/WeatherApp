@@ -7,6 +7,10 @@ Architecture pattern used
 * Clean architecture with MVVM 
 
 
+Test Coverage
+------------------------------------
+Unit and functional tests coverage
+
 Core Layer
 ------------------------------------
 Entities
