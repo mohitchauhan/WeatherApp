@@ -21,7 +21,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "com.android.app.weather.WeatherAppTestRunner"
 
-        buildConfigField "String", "XU_API_KEY", "\"" + propOrDef("API_XU_KEY", "") + "\""
+        buildConfigField "String", "DARK_SKY_API_KEY", "\"" + propOrDef("DARK_SKY_API_KEY", "") + "\""
 
     }
     buildTypes {
@@ -53,7 +53,7 @@ dependencies {
     implementation Libs.Kotlin.reflect
 
 
-    implementation project(":xuapi")
+    implementation project(":DarkSkyApi")
     implementation project(":core")
     implementation project(":data")
     implementation project(":interactors")

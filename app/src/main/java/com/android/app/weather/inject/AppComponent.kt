@@ -3,7 +3,7 @@ package com.android.app.weather.inject
 import com.android.xu.data.DataModule
 import com.android.app.weather.WeatherApp
 import com.android.app.weather.home.HomeBuilder
-import com.android.xu.xuapi.APIxuModule
+import com.android.xu.darkskyapi.DarkSkyDIModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -14,7 +14,7 @@ import javax.inject.Singleton
 @Component(modules = [AndroidSupportInjectionModule::class,
     HomeBuilder::class,
     AppModule::class,
-    APIxuModule::class,
+    DarkSkyDIModule::class,
     NetworkModule::class,
     DataModule::class,
     LocationModule::class

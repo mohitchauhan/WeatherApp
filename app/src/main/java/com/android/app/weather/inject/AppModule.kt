@@ -43,7 +43,7 @@ class AppModule {
 
     @Provides
     @Named("xu-api-key")
-    fun provideXuWeatherApiKey(): String = BuildConfig.XU_API_KEY
+    fun provideXuWeatherApiKey(): String = BuildConfig.DARK_SKY_API_KEY
 
 
     @Provides

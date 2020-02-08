@@ -7,7 +7,7 @@ apply plugin: 'kotlin-kapt'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(":core")
-    api project(":xuapi")
+    api project(":DarkSkyApi")
     api project(":location-api")
 
     implementation Libs.Dagger.androidSupport

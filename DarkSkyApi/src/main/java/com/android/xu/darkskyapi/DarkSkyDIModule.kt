@@ -1,4 +1,4 @@
-package com.android.xu.xuapi
+package com.android.xu.darkskyapi
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 
 @Module
-class APIxuModule {
+class DarkSkyDIModule {
 
     @Singleton
     @Provides
@@ -20,8 +20,8 @@ class APIxuModule {
         @Named("cache") cacheDir: File,
         interceptor: HttpLoggingInterceptor,
         @Named("xu-api-key") apiKey: String
-    ): APIXu {
-        return object : APIXu(apiKey) {
+    ): DarkSkyAPI {
+        return object : DarkSkyAPI(apiKey) {
             override fun setOkHttpClientDefaults(builder: OkHttpClient.Builder) {
                 super.setOkHttpClientDefaults(builder)
                 builder.apply {

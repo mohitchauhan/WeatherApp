@@ -13,7 +13,7 @@ class WeatherForecastDetails @Inject constructor(private val weatherForecastRepo
 
     override suspend fun doWork(params: Params): Result<WeatherForecast> {
         try {
-            return weatherForecastRepository.getForecast(params.days);
+            return weatherForecastRepository.getForecast();
         } catch (e: Exception) {
             e.printStackTrace()
             return ErrorResult(e, "Error occurred")

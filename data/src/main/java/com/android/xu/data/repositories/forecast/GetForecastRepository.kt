@@ -11,8 +11,8 @@ import javax.inject.Singleton
 @Singleton
 class GetForecastRepository @Inject constructor(@XuService private val  weatherForecastSource : WeatherForecastDataSource, private val locationProvider : LocationProvider) {
 
-    suspend fun getForecast(days : Int) : Result<WeatherForecast>{
+    suspend fun getForecast() : Result<WeatherForecast>{
         val location = locationProvider.getLocation();
-        return weatherForecastSource.getWeatherForecast(location.toQueryParams(), days);
+        return weatherForecastSource.getWeatherForecast(location.toQueryParams());
     }
 }

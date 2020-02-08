@@ -76,9 +76,9 @@ class HomeActivity : BaseActivity() {
             ResourceState.SUCCESS -> {
                 contentViewBinding.loadingView.loading_icon.animation?.cancel()
                 it.data?.days?.let { it1 -> forecastAdapter.update(it1) };
-                contentViewBinding.includeContent.cityName.text = it.data?.cityName
+                contentViewBinding.includeContent.cityName.text = it.data?.currentLocation
                 contentViewBinding.includeContent.currentTemperature.text =
-                    it.data?.currentTemp_c.toString()
+                    it.data?.current?.temperature.toString()
                 contentViewBinding.includeContent.visibility = View.VISIBLE
             }
             else -> {

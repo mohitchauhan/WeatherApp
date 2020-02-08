@@ -1,6 +1,5 @@
 package com.android.xu.data
 
-import com.android.xu.data.entities.Day
 import com.android.xu.data.entities.Forecastday
 import com.android.xu.data.entities.WeatherForecast
 import com.android.xu.xuapi.entities.XuWeatherForecast

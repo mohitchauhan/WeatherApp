@@ -13,6 +13,10 @@ import com.android.xu.interactors.WeatherForecastDetails
 import com.android.xu.interactors.launchInteractor
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(private val weatherForecastInteractor : WeatherForecastDetails) : ViewModel() {

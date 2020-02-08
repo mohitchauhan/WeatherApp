@@ -1,23 +1,18 @@
-package com.android.xu.xuapi
+package com.android.xu.darkskyapi
 
-import com.android.xu.xuapi.entities.XuWeatherForecast
-import com.android.xu.xuapi.interceptors.XuAPIInterceptor
+import com.android.xu.darkskyapi.entities.DarkSkyResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
-open class APIXu(val apiKey: String) {
+open class DarkSkyAPI(val apiKey: String) {
 
 
     companion object{
-        const val HOST = "api.apixu.com"
-        const val API_VERSION = "v1"
-        const val API_URL = "https://$HOST/$API_VERSION/";
-        const val PARAM_API_KEY = "key";
+        const val HOST = "api.darksky.net"
+        const val API_URL = "https://$HOST/";
 
     }
 
@@ -59,7 +54,7 @@ open class APIXu(val apiKey: String) {
      * Adds a network interceptor to add version and auth headers and a regular interceptor to log requests.
      */
     protected open fun setOkHttpClientDefaults(builder: OkHttpClient.Builder) {
-        builder.addInterceptor(XuAPIInterceptor(this))
+//        builder.addInterceptor(XuAPIInterceptor(this))
 
     }
 
@@ -76,12 +71,12 @@ open class APIXu(val apiKey: String) {
         return retrofit!!
     }
 
-    fun weatherService(): WeatherService {
-        return getRetrofit().create(WeatherService::class.java)
+    fun weatherService(): DarkSkyService {
+        return getRetrofit().create(DarkSkyService::class.java)
     }
 
-    fun forecast(location: String, days: Int): Response<XuWeatherForecast> {
-        return weatherService().forecast(location, days).execute()
+    fun forecast( location: String): Response<DarkSkyResponse> {
+        return weatherService().forecast(apiKey, location).execute()
     }
 
 
